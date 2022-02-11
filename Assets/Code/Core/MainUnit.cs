@@ -1,10 +1,9 @@
-using Abstractions;
-using Abstractions.Commands;
+﻿using Abstractions;
 using UnityEngine;
 
 namespace Core
 {
-    public sealed class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable
+    public class MainUnit : MonoBehaviour, ISelectable
     {
         #region Serialize Fields
 
@@ -14,10 +13,7 @@ namespace Core
         
         [Header("Settings")]
         [SerializeField] private float _maxHealth;
-        
-        [Header("Spawning")]
-        [SerializeField] private GameObject _unitPrefab;
-        [SerializeField] private Transform _unitsParent;
+        [SerializeField] private float _attackDamage;
 
         #endregion
 
@@ -25,6 +21,7 @@ namespace Core
 
         public float Health => _health;
         public float MaxHealth => _maxHealth;
+        public float AttackDamage => _attackDamage;
 
         public string Name => _name;
         public Sprite Icon => _icon;
@@ -35,19 +32,11 @@ namespace Core
         
         private float _health;
         private GameObject _gameObject;
-
+        
         public void Start()
         {
             _health = _maxHealth;
             _gameObject = gameObject;
-        }
-
-        public override void Execute(IProduceUnitCommand command)
-        {
-            Instantiate(
-                command.UnitPrefab, 
-                new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)), 
-                Quaternion.identity, _unitsParent);
         }
     }
 }
