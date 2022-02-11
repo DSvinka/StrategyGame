@@ -1,0 +1,16 @@
+{
+    "name": "Views",
+    "rootNamespace": "UIViews",
+    "references": [
+        "GUID:18fc682b1ac04c143b3c5716ca7d3158"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
