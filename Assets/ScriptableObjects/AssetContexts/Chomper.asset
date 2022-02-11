@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76361e4d372481daa64b9876855afff, type: 3}
   m_Name: Chomper
   m_EditorClassIdentifier: 
-  _objects: []
+  _objects:
+  - {fileID: 5785585415767737371, guid: 58552ca92bfceb24fb064f5e659eff05, type: 3}
