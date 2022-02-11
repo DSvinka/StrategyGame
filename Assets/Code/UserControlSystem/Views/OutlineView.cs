@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace UIViews.Code.UserControlSystem.Views
+namespace UserControlSystem.Views
 {
     public enum Mode {
         OutlineAll,
@@ -27,22 +27,6 @@ namespace UIViews.Code.UserControlSystem.Views
         [SerializeField] private Mode _outlineMode;
         [SerializeField] private Color _outlineColor = Color.white;
         [SerializeField, Range(0f, 10f)] private float _outlineWidth = 2f;
-
-        public Mode OutlineMode
-        {
-            get => _outlineMode;
-            set => _outlineMode = value;
-        }
-        public Color OutlineColor
-        {
-            get => _outlineColor;
-            set => _outlineColor = value;
-        }
-        public float OutlineWidth
-        {
-            get => _outlineWidth;
-            set => _outlineWidth = value;
-        }
 
         private Renderer[] _renderers;
         private Material _outlineMaskMaterial;
