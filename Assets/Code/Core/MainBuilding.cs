@@ -42,7 +42,7 @@ namespace Core
             _gameObject = gameObject;
         }
 
-        public override void Execute(IProduceUnitCommand command)
+        public override void ExecuteSpecific(IProduceUnitCommand command)
         {
             Instantiate(
                 command.UnitPrefab, 

@@ -42,7 +42,7 @@ namespace UserControlSystem.Views
         {
             foreach (var commandExecutor in commandExecutors)
             {
-                var button = _buttonsByExecutorType.First(type => type.Key.IsInstanceOfType(commandExecutor)).Value;
+                var button = GetButton(commandExecutor);
                 button.gameObject.SetActive(true);
                 button.onClick.AddListener(() => OnClick?.Invoke(commandExecutor));
             }
@@ -56,5 +56,29 @@ namespace UserControlSystem.Views
                 button.Value.gameObject.SetActive(false);
             }
         }
+
+        private Button GetButton(object executorType)
+        {
+            return _buttonsByExecutorType
+                .First(type => type.Key.IsInstanceOfType(executorType))
+                .Value;
+        }
+
+        private void SetInteractable(bool value)
+        {
+            foreach (var button in _buttonsByExecutorType)
+            {
+                button.Value.interactable = value;
+            }
+        }
+
+        public void BlockInteractions(ICommandExecutor commandExecutor)
+        {
+            UnblockAllInteractions();
+            GetButton(commandExecutor).interactable = false;
+        }
+
+        public void BlockAllInteractions() => SetInteractable(false);
+        public void UnblockAllInteractions() => SetInteractable(true);
     }
 }

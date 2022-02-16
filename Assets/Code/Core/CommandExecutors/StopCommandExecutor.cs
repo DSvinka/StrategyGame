@@ -6,7 +6,7 @@ namespace Core.CommandExecutors
 {
     public class StopCommandExecutor : CommandExecutorBase<IStopCommand>
     {
-        public override void Execute(IStopCommand command)
+        public override void ExecuteSpecific(IStopCommand command)
         {
             Debug.Log($"{name} Has Stopped!");
         }

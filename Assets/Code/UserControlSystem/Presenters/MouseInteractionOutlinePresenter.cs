@@ -13,7 +13,7 @@ namespace UserControlSystem.Presenters
 
         private void Start()
         {
-            _selectedValue.OnSelected += OnSelected;
+            _selectedValue.OnUpdateValue += OnSelected;
             OnSelected(_selectedValue.CurrentValue);
         }
 

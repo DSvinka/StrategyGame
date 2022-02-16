@@ -6,9 +6,9 @@ namespace Core.CommandExecutors
 {
     public class AttackCommandExecutor : CommandExecutorBase<IAttackCommand>
     {
-        public override void Execute(IAttackCommand command)
+        public override void ExecuteSpecific(IAttackCommand command)
         {
-            Debug.Log($"{name} Attacks!");
+            Debug.Log($"{name} attack {command.Target.name}!");
         }
     }
 }
