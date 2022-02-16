@@ -6,7 +6,7 @@ namespace Core.CommandExecutors
 {
     public class PatrolCommandExecutor : CommandExecutorBase<IPatrolCommand>
     {
-        public override void Execute(IPatrolCommand command)
+        public override void ExecuteSpecific(IPatrolCommand command)
         {
             Debug.Log($"{name} Patrols!");
         }
