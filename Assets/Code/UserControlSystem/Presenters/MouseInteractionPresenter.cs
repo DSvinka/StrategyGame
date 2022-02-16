@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Abstractions;
+using Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UserControlSystem.Models;
@@ -13,7 +14,8 @@ namespace UserControlSystem.Presenters
         [SerializeField] private EventSystem _eventSystem;
         
         [SerializeField] private SelectableValue _selectedObject;
-        [SerializeField] private Vector3Value _RMBClickPositionObject;
+        [SerializeField] private Vector3Value _mousePositionOnRMBObject;
+        [SerializeField] private TransformValue _mouseHitTransformOnRMBObject;
         
         [SerializeField] private Transform _groundTransform;
 
@@ -49,8 +51,17 @@ namespace UserControlSystem.Presenters
                 var ray = _camera.ScreenPointToRay(Input.mousePosition);
                 if (_groundPlane.Raycast(ray, out var enter))
                 {
-                    _RMBClickPositionObject.SetValue(ray.origin + ray.direction * enter);
+                    _mousePositionOnRMBObject.SetValue(ray.origin + ray.direction * enter);
                 }
+                
+                if (Physics.Raycast(ray, out var hit))
+                {
+                    var mainUnit = hit.collider.GetComponentInParent<MainUnit>();
+                    if (mainUnit == null)
+                        return;
+
+                    _mouseHitTransformOnRMBObject.SetValue(mainUnit.transform);
+                };
             }
         }
     }

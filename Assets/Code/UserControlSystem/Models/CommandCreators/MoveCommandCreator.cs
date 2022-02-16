@@ -35,6 +35,5 @@ namespace UserControlSystem.Models.CommandCreators
             
             _creationCallback = null;
         }
-
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
-using Abstractions;
+﻿using Abstractions;
 using UnityEngine;
 
-namespace UserControlSystem.Models
+namespace UserControlSystem
 {
-    [CreateAssetMenu(fileName = nameof(Vector3Value), menuName = "Game/"+nameof(Vector3Value))]
+    [CreateAssetMenu(fileName = nameof(Vector3Value), menuName = "Game/Values/"+nameof(Vector3Value))]
     public sealed class Vector3Value : SubscribeValueBase<Vector3>
     {
         

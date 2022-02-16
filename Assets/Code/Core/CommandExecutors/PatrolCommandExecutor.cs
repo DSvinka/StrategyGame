@@ -8,7 +8,7 @@ namespace Core.CommandExecutors
     {
         public override void ExecuteSpecific(IPatrolCommand command)
         {
-            Debug.Log($"{name} Patrols!");
+            Debug.Log($"{name} is patrolling on {command.Target}!");
         }
     }
 }
