@@ -1518,7 +1518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904678460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 2016654073}
@@ -2370,7 +2370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168080993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.61, y: 0.92, z: -1.96}
+  m_LocalPosition: {x: -1.61, y: 0, z: -1.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1899342484}
@@ -2739,6 +2739,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _legacyContext: {fileID: 11400000, guid: 4c491f163b5f32f4f897f334efc04755, type: 2}
   _mousePositionOnRMBObject: {fileID: 11400000, guid: 4f8b760a344aafe4db0f861b843de3d9, type: 2}
+  _mouseHitTransformOnRMBObject: {fileID: 11400000, guid: 5e88703bca87f9e49a917e74c9adefa5, type: 2}
 --- !u!1 &1642745708
 GameObject:
   m_ObjectHideFlags: 0
@@ -3258,7 +3259,8 @@ MonoBehaviour:
   _camera: {fileID: 963194227}
   _eventSystem: {fileID: 1002681832}
   _selectedObject: {fileID: 11400000, guid: a9513f3c74f3e954dac1d949a4d8dda9, type: 2}
-  _RMBClickPositionObject: {fileID: 11400000, guid: 4f8b760a344aafe4db0f861b843de3d9, type: 2}
+  _mousePositionOnRMBObject: {fileID: 11400000, guid: 4f8b760a344aafe4db0f861b843de3d9, type: 2}
+  _mouseHitTransformOnRMBObject: {fileID: 11400000, guid: 5e88703bca87f9e49a917e74c9adefa5, type: 2}
   _groundTransform: {fileID: 904678461}
 --- !u!4 &1923996265
 Transform:
@@ -3314,7 +3316,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928161780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.64, y: 0.92, z: 2.79}
+  m_LocalPosition: {x: 8.64, y: 0, z: 2.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1899342484}
@@ -3502,7 +3504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7241100119495414520, guid: 1a064d0e6cc41304680a7db086755b2b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7241100119495414520, guid: 1a064d0e6cc41304680a7db086755b2b, type: 3}
       propertyPath: m_LocalPosition.z
