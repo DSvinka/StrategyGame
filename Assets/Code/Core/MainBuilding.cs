@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public sealed class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable
+    public sealed class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable, IAttackable
     {
         #region Serialize Fields
 
@@ -14,6 +14,7 @@ namespace Core
         
         [Header("Settings")]
         [SerializeField] private float _maxHealth;
+        [SerializeField] private Transform _pivotPoint;
         
         [Header("Spawning")]
         [SerializeField] private GameObject _unitPrefab;
@@ -30,6 +31,7 @@ namespace Core
         public Sprite Icon => _icon;
         
         public GameObject GameObject => _gameObject;
+        public Transform PivotPoint => _pivotPoint;
 
         #endregion
         

@@ -10,6 +10,8 @@ namespace UserControlSystem.Models.CommandCreators
     public sealed class PatrolCommandCreator : CommandCreatorBase<IPatrolCommand>
     {
         [Inject] private AssetsContext _context;
+        [Inject] private SelectableValue _selectable;
+        
         private Action<IPatrolCommand> _creationCallback;
 
         [Inject]
@@ -20,7 +22,7 @@ namespace UserControlSystem.Models.CommandCreators
 
         private void OnUpdateValue(Vector3 groundClick)
         {
-            _creationCallback?.Invoke(_context.Inject(new PatrolCommand(groundClick)));
+            _creationCallback?.Invoke(_context.Inject(new PatrolCommand(_selectable.CurrentValue.PivotPoint.position, groundClick)));
             _creationCallback = null;
         }
 

@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5badfa0f523c4633a2d500d15f7b7dd0, type: 3}
-  m_Name: MousePositionOnRMB
+  m_Name: GroundClickRMB
   m_EditorClassIdentifier: 

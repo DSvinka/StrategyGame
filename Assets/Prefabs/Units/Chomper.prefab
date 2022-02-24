@@ -10,8 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5785585415767737370}
   - component: {fileID: 1364245216823427637}
+  - component: {fileID: 7853583425596189419}
+  - component: {fileID: 5573048465228441298}
   - component: {fileID: 7790169753030932818}
-  - component: {fileID: 7965904836731185320}
+  - component: {fileID: 7299373066818231440}
+  - component: {fileID: 5026869848141067295}
   - component: {fileID: 1101684828257143733}
   - component: {fileID: 2311217117757527035}
   - component: {fileID: 7381463902092082391}
@@ -51,6 +54,47 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!95 &7853583425596189419
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785585415767737371}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 2732fe64dd2799f439fb845921df626b, type: 3}
+  m_Controller: {fileID: 9100000, guid: 1675882b377db5d4395cd68f1f475f5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!195 &5573048465228441298
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785585415767737371}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &7790169753030932818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +110,7 @@ MonoBehaviour:
   _outlineMode: 0
   _outlineColor: {r: 1, g: 1, b: 1, a: 1}
   _outlineWidth: 2
---- !u!114 &7965904836731185320
+--- !u!114 &7299373066818231440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,13 +119,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 5785585415767737371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22847439ac784adc8527ecc30ec9b694, type: 3}
+  m_Script: {fileID: 11500000, guid: 24c3ffdf329f4986ab1296484e746a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: "\u0427\u043E\u043C\u043F\u0435\u0440"
-  _icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  _name: Chomper
+  _icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   _maxHealth: 100
-  _attackDamage: 25
+  _pivotPoint: {fileID: 5785585415767737370}
+--- !u!114 &5026869848141067295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785585415767737371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cacd3bd2748145389cf4382e70866303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navMeshAgent: {fileID: 5573048465228441298}
 --- !u!114 &1101684828257143733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d53476b55073442d9a5895aab7c30129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stopCommandExecutor: {fileID: 6235023003506832323}
+  _unitMovementStop: {fileID: 5026869848141067295}
+  _animator: {fileID: 7853583425596189419}
 --- !u!114 &7381463902092082391
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using Abstractions;
 using Abstractions.Commands;
+using UnityEngine;
 using UserControlSystem.Models.CommandCreators;
 using Zenject;
 
@@ -33,7 +34,6 @@ namespace UserControlSystem.Models
             
             _unitProducer.ProcessCommandExecutor(commandExecutor,
                 command => ExecuteCommandWrapper(commandExecutor, command));
-            
             _attacker.ProcessCommandExecutor(commandExecutor,
                 command => ExecuteCommandWrapper(commandExecutor, command));
             _moving.ProcessCommandExecutor(commandExecutor,

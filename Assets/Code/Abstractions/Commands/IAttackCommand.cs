@@ -4,6 +4,6 @@ namespace Abstractions.Commands
 {
     public interface IAttackCommand
     {
-        public Transform Target { get; }
+        public IAttackable Target { get; }
     }
 }

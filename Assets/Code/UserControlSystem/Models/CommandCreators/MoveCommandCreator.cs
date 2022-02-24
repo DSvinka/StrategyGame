@@ -13,9 +13,9 @@ namespace UserControlSystem.Models.CommandCreators
         private Action<IMoveCommand> _creationCallback;
 
         [Inject]
-        private void Init(Vector3Value groundClicks)
+        private void Init(Vector3Value groundClick)
         {
-            groundClicks.OnUpdateValue += OnUpdateValue;
+            groundClick.OnUpdateValue += OnUpdateValue;
         }
 
         private void OnUpdateValue(Vector3 groundClick)

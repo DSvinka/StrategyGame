@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using Abstractions;
 using Abstractions.Commands;
 using UnityEngine;
 using UserControlSystem.Commands;
@@ -7,33 +9,11 @@ using Zenject;
 
 namespace UserControlSystem.Models.CommandCreators
 {
-    public sealed class AttackCommandCreator : CommandCreatorBase<IAttackCommand>
+    public sealed class AttackCommandCreator : CancellableCommandCreatorBase<IAttackCommand, IAttackable>
     {
-        [Inject] private AssetsContext _context;
-        private Action<IAttackCommand> _creationCallback;
-
-        [Inject]
-        private void Init(TransformValue groundClicks)
+        protected override IAttackCommand CreateCommand(IAttackable argument)
         {
-            groundClicks.OnUpdateValue += OnUpdateValue;
-        }
-
-        private void OnUpdateValue(Transform transformClick)
-        {
-            _creationCallback?.Invoke(_context.Inject(new AttackCommand(transformClick)));
-            _creationCallback = null;
-        }
-
-        protected override void SpecificCommand(Action<IAttackCommand> creationCallback)
-        {
-            _creationCallback = creationCallback;
-        }
-
-        public override void ProcessCancel()
-        {
-            base.ProcessCancel();
-            
-            _creationCallback = null;
+            return new AttackCommand(argument);
         }
     }
 }
