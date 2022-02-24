@@ -1,9 +1,10 @@
 ﻿using Abstractions;
+using Abstractions.Commands;
 using UnityEngine;
 
 namespace Core
 {
-    public class MainUnit : MonoBehaviour, ISelectable
+    public sealed class MainUnit : MonoBehaviour, ISelectable, IAttackable
     {
         #region Serialize Fields
 
@@ -13,7 +14,7 @@ namespace Core
         
         [Header("Settings")]
         [SerializeField] private float _maxHealth;
-        [SerializeField] private float _attackDamage;
+        [SerializeField] private Transform _pivotPoint;
 
         #endregion
 
@@ -21,18 +22,18 @@ namespace Core
 
         public float Health => _health;
         public float MaxHealth => _maxHealth;
-        public float AttackDamage => _attackDamage;
-
+        
         public string Name => _name;
         public Sprite Icon => _icon;
         
         public GameObject GameObject => _gameObject;
+        public Transform PivotPoint => _pivotPoint;
 
         #endregion
         
         private float _health;
         private GameObject _gameObject;
-        
+
         public void Start()
         {
             _health = _maxHealth;

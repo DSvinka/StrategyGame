@@ -1,13 +1,14 @@
-﻿using Abstractions.Commands;
+﻿using Abstractions;
+using Abstractions.Commands;
 using UnityEngine;
 
 namespace UserControlSystem.Commands
 {
     public sealed class AttackCommand: IAttackCommand
     {
-        public Transform Target { get; }
+        public IAttackable Target { get; }
 
-        public AttackCommand(Transform target)
+        public AttackCommand(IAttackable target)
         {
             Target = target;
         }

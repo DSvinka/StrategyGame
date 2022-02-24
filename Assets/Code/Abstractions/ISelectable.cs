@@ -2,13 +2,9 @@ using UnityEngine;
 
 namespace Abstractions
 {
-    public interface ISelectable
+    public interface ISelectable: IHealthHolder, IGameObjectHolder
     {
-        float Health { get; }
-        float MaxHealth { get; }
         Sprite Icon { get; }
-        
         string Name { get; }
-        GameObject GameObject { get; }
     }
 }
