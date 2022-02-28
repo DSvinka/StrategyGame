@@ -19,8 +19,12 @@ public class AssetsInstaller: ScriptableObjectInstaller<AssetsInstaller>
 
     public override void InstallBindings()
     {
-        Container.BindInstances(_legacyContext);
-
+        Container.BindInstances(_legacyContext, _selectable, _groundClickRMB, _attackableClickRMB);
+        
+        Container.Bind<IAwaitable<IAttackable>>().FromInstance(_attackableClickRMB);
+        Container.Bind<IAwaitable<Vector3>>().FromInstance(_groundClickRMB);
+        Container.Bind<IAwaitable<ISelectable>>().FromInstance(_selectable);
+        
         Container.Bind<IObservable<IAttackable>>().FromInstance(_attackableClickRMB);
         Container.Bind<IObservable<Vector3>>().FromInstance(_groundClickRMB);
         Container.Bind<IObservable<ISelectable>>().FromInstance(_selectable);

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 namespace UserControlSystem.Views
 {
-    // TODO: Я без понятия как тут использовать UniRx
     public sealed class CommandButtonsView: MonoBehaviour
     {
         public event Action<ICommandExecutor> OnClick;
