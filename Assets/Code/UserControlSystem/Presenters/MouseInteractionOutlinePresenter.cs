@@ -1,20 +1,22 @@
-﻿using Abstractions;
+﻿using System;
+using Abstractions;
+using UniRx;
 using UserControlSystem.Models;
 using UserControlSystem.Views;
 using UnityEngine;
+using Zenject;
 
 namespace UserControlSystem.Presenters
 {
     public sealed class MouseInteractionOutlinePresenter: MonoBehaviour
     {
-        [SerializeField] private SelectableValue _selectedValue;
+        [Inject] private IObservable<ISelectable> _selectedValue;
         
         private ISelectable _currentSelectable;
 
         private void Start()
         {
-            _selectedValue.OnUpdateValue += OnSelected;
-            OnSelected(_selectedValue.CurrentValue);
+            _selectedValue.Subscribe(OnSelected);
         }
 
         private void OnSelected(ISelectable selected)

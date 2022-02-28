@@ -1,8 +1,11 @@
-﻿using Abstractions;
+﻿using System;
+using Abstractions;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using UserControlSystem.Models;
+using Zenject;
 
 namespace UserControlSystem.Presenters
 {
@@ -16,16 +19,15 @@ namespace UserControlSystem.Presenters
         
         [SerializeField] private TMP_Text _healthText;
         [SerializeField] private Slider _healthSlider;
-
-        [Header("Other")] 
-        [SerializeField] private SelectableValue _selectedValue;
+        
+        [Inject] private IObservable<ISelectable> _selectedValue;
 
         #endregion
 
-        private void Start()
+        [Inject]
+        private void Init()
         {
-            _selectedValue.OnUpdateValue += OnSelected;
-            OnSelected(_selectedValue.CurrentValue);
+            _selectedValue.Subscribe(OnSelected);
         }
 
         private void OnSelected(ISelectable selected)
