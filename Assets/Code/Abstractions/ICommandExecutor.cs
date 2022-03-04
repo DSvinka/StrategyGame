@@ -2,6 +2,11 @@
 {
     public interface ICommandExecutor
     {
-        public void Execute(object command);
+        
+    }
+    
+    public interface ICommandExecutor<T> : ICommandExecutor
+    {
+        
     }
 }

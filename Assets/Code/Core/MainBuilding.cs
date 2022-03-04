@@ -1,10 +1,11 @@
+using System.Threading.Tasks;
 using Abstractions;
 using Abstractions.Commands;
 using UnityEngine;
 
 namespace Core
 {
-    public sealed class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable, IAttackable
+    public sealed class MainBuilding : MonoBehaviour, ISelectable, IAttackable
     {
         #region Serialize Fields
 
@@ -15,10 +16,6 @@ namespace Core
         [Header("Settings")]
         [SerializeField] private float _maxHealth;
         [SerializeField] private Transform _pivotPoint;
-        
-        [Header("Spawning")]
-        [SerializeField] private GameObject _unitPrefab;
-        [SerializeField] private Transform _unitsParent;
 
         #endregion
 
@@ -32,6 +29,8 @@ namespace Core
         
         public GameObject GameObject => _gameObject;
         public Transform PivotPoint => _pivotPoint;
+        
+        public Vector3 RallyPoint { get; set; }
 
         #endregion
         
@@ -42,14 +41,6 @@ namespace Core
         {
             _health = _maxHealth;
             _gameObject = gameObject;
-        }
-
-        public override void ExecuteSpecific(IProduceUnitCommand command)
-        {
-            Instantiate(
-                command.UnitPrefab, 
-                new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)), 
-                Quaternion.identity, _unitsParent);
         }
     }
 }
