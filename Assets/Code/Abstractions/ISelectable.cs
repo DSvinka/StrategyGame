@@ -2,9 +2,8 @@ using UnityEngine;
 
 namespace Abstractions
 {
-    public interface ISelectable: IHealthHolder, IGameObjectHolder
+    public interface ISelectable: IHealthHolder, IGameObjectHolder, IIconHolder
     {
-        Sprite Icon { get; }
         string Name { get; }
     }
 }

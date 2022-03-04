@@ -19,29 +19,36 @@ namespace UserControlSystem.Models
         [Inject] private CommandCreatorBase<IMoveCommand> _moving;
         [Inject] private CommandCreatorBase<IPatrolCommand> _patrolling;
         [Inject] private CommandCreatorBase<IStopCommand> _stopped;
+        [Inject] private CommandCreatorBase<IStopCommand> _setRally;
 
         private bool _commandIsPending;
 
-        public void OnCommandButtonClick(ICommandExecutor commandExecutor)
+        public void OnCommandButtonClicked(ICommandExecutor commandExecutor, ICommandsQueue commandsQueue)
         {
             if (_commandIsPending)
             {
                 OnProcessCancel();
             }
-
             _commandIsPending = true;
             OnCommandAccepted?.Invoke(commandExecutor);
-            
-            _unitProducer.ProcessCommandExecutor(commandExecutor,
-                command => ExecuteCommandWrapper(commandExecutor, command));
-            _attacker.ProcessCommandExecutor(commandExecutor,
-                command => ExecuteCommandWrapper(commandExecutor, command));
-            _moving.ProcessCommandExecutor(commandExecutor,
-                command => ExecuteCommandWrapper(commandExecutor, command));
-            _patrolling.ProcessCommandExecutor(commandExecutor,
-                command => ExecuteCommandWrapper(commandExecutor, command));
-            _stopped.ProcessCommandExecutor(commandExecutor,
-                command => ExecuteCommandWrapper(commandExecutor, command));
+
+            _unitProducer.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
+            _attacker.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
+            _stopped.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
+            _moving.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
+            _patrolling.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
+            _setRally.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
+        }
+
+        public void ExecuteCommandWrapper(object command, ICommandsQueue commandsQueue)
+        {
+            if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
+            {
+                commandsQueue.Clear();
+            }
+            commandsQueue.EnqueueCommand(command);
+            _commandIsPending = false;
+            OnCommandComplete?.Invoke();
         }
 
         public void OnSelectionChanged()
@@ -53,6 +60,7 @@ namespace UserControlSystem.Models
         public void OnProcessCancel()
         {
             _unitProducer.ProcessCancel();
+            _setRally.ProcessCancel();
             
             _attacker.ProcessCancel();
             _moving.ProcessCancel();
@@ -60,13 +68,6 @@ namespace UserControlSystem.Models
             _stopped.ProcessCancel();
             
             OnCommandCancel?.Invoke();
-        }
-        
-        private void ExecuteCommandWrapper(ICommandExecutor commandExecutor, object command)
-        {
-            commandExecutor.Execute(command);
-            _commandIsPending = false;
-            OnCommandComplete?.Invoke();
         }
     }
 }

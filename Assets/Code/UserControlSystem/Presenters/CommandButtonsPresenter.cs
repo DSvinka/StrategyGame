@@ -20,7 +20,7 @@ namespace UserControlSystem.Presenters
 
         private void Start()
         {
-            _view.OnClick += _model.OnCommandButtonClick;
+            _view.OnClick += _model.OnCommandButtonClicked;
             _model.OnCommandAccepted += _view.BlockInteractions;
             _model.OnCommandComplete += _view.UnblockAllInteractions;
             _model.OnCommandCancel += _view.UnblockAllInteractions;
@@ -30,7 +30,7 @@ namespace UserControlSystem.Presenters
 
         private void OnDestroy()
         {
-            _view.OnClick -= _model.OnCommandButtonClick;
+            _view.OnClick -= _model.OnCommandButtonClicked;
             _model.OnCommandAccepted -= _view.BlockInteractions;
             _model.OnCommandComplete -= _view.UnblockAllInteractions;
             _model.OnCommandCancel -= _view.UnblockAllInteractions;
@@ -53,7 +53,8 @@ namespace UserControlSystem.Presenters
             {
                 var commandExecutors = new List<ICommandExecutor>();
                 commandExecutors.AddRange(selectable.GameObject.GetComponentsInParent<ICommandExecutor>());
-                _view.MakeLayout(commandExecutors);
+                var queue = (selectable as Component)?.GetComponentInParent<ICommandsQueue>();
+                _view.MakeLayout(commandExecutors, queue);
             }
         }
     }

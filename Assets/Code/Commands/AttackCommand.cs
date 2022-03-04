@@ -1,8 +1,7 @@
 ﻿using Abstractions;
 using Abstractions.Commands;
-using UnityEngine;
 
-namespace UserControlSystem.Commands
+namespace Commands
 {
     public sealed class AttackCommand: IAttackCommand
     {

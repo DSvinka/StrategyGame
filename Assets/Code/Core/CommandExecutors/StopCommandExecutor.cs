@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
 using Abstractions;
 using Abstractions.Commands;
 using UnityEngine;
@@ -9,9 +10,10 @@ namespace Core.CommandExecutors
     {
         public CancellationTokenSource CancellationTokenSource { get; set; }
 
-        public override void ExecuteSpecific(IStopCommand command)
+        public override Task ExecuteSpecific(IStopCommand command)
         {
             CancellationTokenSource?.Cancel();
+            return Task.CompletedTask;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
 using Abstractions;
 using Abstractions.Commands;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace Core.CommandExecutors
         private static readonly int Idle = Animator.StringToHash("Idle");
         private static readonly int Walk = Animator.StringToHash("Walk");
 
-        public override async void ExecuteSpecific(IMoveCommand command)
+        public override async Task ExecuteSpecific(IMoveCommand command)
         {
             _unitMovementStop.NavMeshAgent.destination = command.Target;
             _animator.SetTrigger(Walk);

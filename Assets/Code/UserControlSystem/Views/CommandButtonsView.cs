@@ -10,24 +10,26 @@ namespace UserControlSystem.Views
 {
     public sealed class CommandButtonsView: MonoBehaviour
     {
-        public event Action<ICommandExecutor> OnClick;
+        public Action<ICommandExecutor, ICommandsQueue> OnClick;
         
         [SerializeField] private Button _moveButton;
         [SerializeField] private Button _patrolButton;
         [SerializeField] private Button _stopButton;
         [SerializeField] private Button _attackButton;
         [SerializeField] private Button _produceUnitButton;
+        [SerializeField] private Button _setRallyButton;
 
         private Dictionary<Type, Button> _buttonsByExecutorType;
 
         private void Start()
         {
             _buttonsByExecutorType = new Dictionary<Type, Button>();
-            _buttonsByExecutorType.Add(typeof(CommandExecutorBase<IMoveCommand>), _moveButton);
-            _buttonsByExecutorType.Add(typeof(CommandExecutorBase<IPatrolCommand>), _patrolButton);
-            _buttonsByExecutorType.Add(typeof(CommandExecutorBase<IStopCommand>), _stopButton);
-            _buttonsByExecutorType.Add(typeof(CommandExecutorBase<IAttackCommand>), _attackButton);
-            _buttonsByExecutorType.Add(typeof(CommandExecutorBase<IProduceUnitCommand>), _produceUnitButton);
+            _buttonsByExecutorType.Add(typeof(ICommandExecutor<IMoveCommand>), _moveButton);
+            _buttonsByExecutorType.Add(typeof(ICommandExecutor<IPatrolCommand>), _patrolButton);
+            _buttonsByExecutorType.Add(typeof(ICommandExecutor<IStopCommand>), _stopButton);
+            _buttonsByExecutorType.Add(typeof(ICommandExecutor<IAttackCommand>), _attackButton);
+            _buttonsByExecutorType.Add(typeof(ICommandExecutor<IProduceUnitCommand>), _produceUnitButton);
+            _buttonsByExecutorType.Add(typeof(ICommandExecutor<ISetRallyPointCommand>), _setRallyButton);
         }
 
         private void OnDestroy()
@@ -38,13 +40,13 @@ namespace UserControlSystem.Views
             }
         }
 
-        public void MakeLayout(IEnumerable<ICommandExecutor> commandExecutors)
+        public void MakeLayout(IEnumerable<ICommandExecutor> commandExecutors, ICommandsQueue queue)
         {
             foreach (var commandExecutor in commandExecutors)
             {
                 var button = GetButton(commandExecutor);
                 button.gameObject.SetActive(true);
-                button.onClick.AddListener(() => OnClick?.Invoke(commandExecutor));
+                button.onClick.AddListener(() => OnClick?.Invoke(commandExecutor, queue));
             }
         }
         

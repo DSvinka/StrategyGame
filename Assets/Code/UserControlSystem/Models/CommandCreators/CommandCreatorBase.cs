@@ -1,6 +1,5 @@
 ﻿using System;
 using Abstractions;
-using UnityEngine;
 
 namespace UserControlSystem.Models.CommandCreators
 {
@@ -8,8 +7,7 @@ namespace UserControlSystem.Models.CommandCreators
     {
         public ICommandExecutor ProcessCommandExecutor(ICommandExecutor commandExecutor, Action<T> callback)
         {
-            var specificCommandExecutor = commandExecutor as CommandExecutorBase<T>;
-            if (specificCommandExecutor != null)
+            if (commandExecutor is ICommandExecutor<T> specificCommandExecutor)
             {
                 SpecificCommand(callback);
             }
