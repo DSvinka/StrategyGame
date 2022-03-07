@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public sealed class MainUnit : MonoBehaviour, ISelectable, IAttackable, IDamageDealer
+    public sealed class MainUnit : MonoBehaviour, ISelectable, IAttackable, IDamageDealer, IAutomaticAttacker
     {
         private static readonly int Dead = Animator.StringToHash("Dead");
         
@@ -20,11 +20,12 @@ namespace Core
         [SerializeField] private int _damage = 25;
         [SerializeField] private float _maxHealth = 100;
         [SerializeField] private Transform _pivotPoint;
+        [SerializeField] private float _visionRadius = 8f;
         
         [Header("Компоненты")]
         [SerializeField] private Animator _animator;
         [SerializeField] private StopCommandExecutor _stopCommand;
-        
+
         #endregion
 
         #region Public Properties 
@@ -38,6 +39,8 @@ namespace Core
         
         public GameObject GameObject => _gameObject;
         public Transform PivotPoint => _pivotPoint;
+        
+        public float VisionRadius => _visionRadius;
 
         #endregion
         

@@ -16,6 +16,7 @@ namespace Core.Queues
         [Inject] CommandExecutorBase<IStopCommand> _stopCommandExecutor;
 
         private ReactiveCollection<object> _innerCollection = new ReactiveCollection<object>();
+        public object CurrentCommand => _innerCollection.Count > 0 ? _innerCollection[0] : default;
 
         [Inject]
         private void Init()
