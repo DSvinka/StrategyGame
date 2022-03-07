@@ -10,6 +10,8 @@ namespace Core.Queues
         [Inject] CommandExecutorBase<IProduceUnitCommand> _produceUnitCommandExecutor;
         [Inject] CommandExecutorBase<ISetRallyPointCommand> _setRallyPointCommandExecutor;
         
+        public object CurrentCommand => default;
+        
         public async void EnqueueCommand(object command)
         {
             await _produceUnitCommandExecutor.TryExecuteCommand(command);
