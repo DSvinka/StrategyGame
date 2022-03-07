@@ -42,5 +42,19 @@ namespace Core
             _health = _maxHealth;
             _gameObject = gameObject;
         }
+        
+        public void AddDamage(int amount)
+        {
+            if (_health <= 0)
+            {
+                return;
+            }
+            
+            _health -= amount;
+            if (_health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

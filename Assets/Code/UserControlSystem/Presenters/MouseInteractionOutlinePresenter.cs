@@ -21,6 +21,9 @@ namespace UserControlSystem.Presenters
 
         private void OnSelected(ISelectable selected)
         {
+            if (this == null)
+                return;
+
             if (_currentSelectable == selected)
                 return;
             

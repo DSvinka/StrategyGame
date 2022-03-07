@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 7241100119495414525}
   - component: {fileID: 6491979208181424302}
   - component: {fileID: 2639408165814734005}
+  - component: {fileID: 8805597496930810933}
   m_Layer: 0
   m_Name: MainBuilding
   m_TagString: Untagged
@@ -218,3 +219,16 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 5e6da3b8cc2e17148af4697d3edc2c2f, type: 3}
   _maxHealth: 1000
   _pivotPoint: {fileID: 7241100119495414520}
+--- !u!114 &8805597496930810933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7241100119495414503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7217d3fe0f4a5e8fb6352b8b847e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _factionId: 0
